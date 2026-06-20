@@ -3,9 +3,13 @@
 import * as React from "react"
 import Link from "next/link"
 import {
-  CircleAlertIcon,
-  CircleCheckIcon,
-  CircleDashedIcon,
+  BotIcon,
+  InboxIcon,
+  BarChart3Icon,
+  WorkflowIcon,
+  BookOpenIcon,
+  LifeBuoyIcon,
+  PlugIcon,
 } from "lucide-react"
 
 import {
@@ -18,41 +22,60 @@ import {
   navigationMenuTriggerStyle,
 } from "@/components/ui/navigation-menu"
 
-const components: { title: string; href: string; description: string }[] = [
+const features: {
+  title: string
+  href: string
+  description: string
+  icon: React.ElementType
+}[] = [
   {
-    title: "Alert Dialog",
-    href: "/docs/primitives/alert-dialog",
+    title: "AI Inbox",
+    href: "/features/inbox",
     description:
-      "A modal dialog that interrupts the user with important content and expects a response.",
+      "A unified inbox that triages, drafts, and resolves tickets automatically.",
+    icon: InboxIcon,
   },
   {
-    title: "Hover Card",
-    href: "/docs/primitives/hover-card",
+    title: "AI Agent",
+    href: "/features/agent",
     description:
-      "For sighted users to preview content available behind a link.",
+      "A trained assistant that handles conversations end-to-end across channels.",
+    icon: BotIcon,
   },
   {
-    title: "Progress",
-    href: "/docs/primitives/progress",
+    title: "Workflows",
+    href: "/features/workflows",
     description:
-      "Displays an indicator showing the completion progress of a task, typically displayed as a progress bar.",
+      "Automate routing, escalation, and follow-ups with no-code rules.",
+    icon: WorkflowIcon,
   },
   {
-    title: "Scroll-area",
-    href: "/docs/primitives/scroll-area",
-    description: "Visually or semantically separates content.",
+    title: "Analytics",
+    href: "/features/analytics",
+    description:
+      "Track resolution time, CSAT, and deflection rate in one dashboard.",
+    icon: BarChart3Icon,
+  },
+]
+
+const resources: {
+  title: string
+  href: string
+  description: string
+  icon: React.ElementType
+}[] = [
+  {
+    title: "Help Center",
+    href: "/resources/help-center",
+    description: "Guides and answers for setting up and using the platform.",
+    icon: LifeBuoyIcon,
   },
   {
-    title: "Tabs",
-    href: "/docs/primitives/tabs",
+    title: "Integrations",
+    href: "/resources/integrations",
     description:
-      "A set of layered sections of content—known as tab panels—that are displayed one at a time.",
-  },
-  {
-    title: "Tooltip",
-    href: "/docs/primitives/tooltip",
-    description:
-      "A popup that displays information related to an element when the element receives keyboard focus or the mouse hovers over it.",
+      "Connect your existing tools: Slack, Zendesk, Shopify, and more.",
+    icon: PlugIcon,
   },
 ]
 
@@ -61,74 +84,52 @@ const NavMenu = () => {
     <NavigationMenu>
       <NavigationMenuList>
         <NavigationMenuItem>
-          <NavigationMenuTrigger>Getting started</NavigationMenuTrigger>
+          <NavigationMenuTrigger>Features</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="w-96">
-              <ListItem href="/docs" title="Introduction">
-                Re-usable components built with Tailwind CSS.
-              </ListItem>
-              <ListItem href="/docs/installation" title="Installation">
-                How to install dependencies and structure your app.
-              </ListItem>
-              <ListItem href="/docs/primitives/typography" title="Typography">
-                Styles for headings, paragraphs, lists...etc
-              </ListItem>
-            </ul>
-          </NavigationMenuContent>
-        </NavigationMenuItem>
-        <NavigationMenuItem className="hidden md:flex">
-          <NavigationMenuTrigger>Components</NavigationMenuTrigger>
-          <NavigationMenuContent>
-            <ul className="grid w-100 gap-2 md:w-125 md:grid-cols-2 lg:w-150">
-              {components.map((component) => (
+            <ul className="grid w-100 gap-1 p-1 md:w-125 md:grid-cols-2 lg:w-150">
+              {features.map((item) => (
                 <ListItem
-                  key={component.title}
-                  title={component.title}
-                  href={component.href}
+                  key={item.title}
+                  title={item.title}
+                  href={item.href}
+                  icon={item.icon}
                 >
-                  {component.description}
+                  {item.description}
                 </ListItem>
               ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
-        <NavigationMenuItem>
-          <NavigationMenuTrigger>With Icon</NavigationMenuTrigger>
+
+        <NavigationMenuItem className="hidden md:flex">
+          <NavigationMenuTrigger>Resources</NavigationMenuTrigger>
           <NavigationMenuContent>
-            <ul className="grid w-50">
-              <li>
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleAlertIcon />
-                      Backlog
-                    </Link>
-                  }
-                />
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleDashedIcon />
-                      To Do
-                    </Link>
-                  }
-                />
-                <NavigationMenuLink
-                  render={
-                    <Link href="#" className="flex-row items-center gap-2">
-                      <CircleCheckIcon />
-                      Done
-                    </Link>
-                  }
-                />
-              </li>
+            <ul className="grid w-90 gap-1 p-1">
+              {resources.map((item) => (
+                <ListItem
+                  key={item.title}
+                  title={item.title}
+                  href={item.href}
+                  icon={item.icon}
+                >
+                  {item.description}
+                </ListItem>
+              ))}
             </ul>
           </NavigationMenuContent>
         </NavigationMenuItem>
+
         <NavigationMenuItem>
           <NavigationMenuLink
             className={navigationMenuTriggerStyle()}
             render={<Link href="/docs">Docs</Link>}
+          />
+        </NavigationMenuItem>
+
+        <NavigationMenuItem>
+          <NavigationMenuLink
+            className={navigationMenuTriggerStyle()}
+            render={<Link href="/pricing">Pricing</Link>}
           />
         </NavigationMenuItem>
       </NavigationMenuList>
@@ -140,15 +141,27 @@ function ListItem({
   title,
   children,
   href,
+  icon: Icon,
   ...props
-}: React.ComponentPropsWithoutRef<"li"> & { href: string }) {
+}: React.ComponentPropsWithoutRef<"li"> & {
+  href: string
+  icon: React.ElementType
+}) {
   return (
     <li {...props}>
       <NavigationMenuLink
         render={
-          <Link href={href}>
-            <div className="flex flex-col gap-1 text-sm">
-              <div className="leading-none font-medium">{title}</div>
+          <Link
+            href={href}
+            className="flex-row items-start gap-3 rounded-md p-2.5 transition-colors hover:bg-slate-100 dark:hover:bg-slate-800/60"
+          >
+            <span className="mt-0.5 flex size-8 shrink-0 items-center justify-center rounded-md bg-slate-100 text-slate-600 dark:bg-slate-800 dark:text-slate-300">
+              <Icon className="size-4" />
+            </span>
+            <div className="flex flex-col gap-0.5 text-sm">
+              <div className="leading-none font-medium text-slate-900 dark:text-slate-50">
+                {title}
+              </div>
               <div className="line-clamp-2 text-muted-foreground">
                 {children}
               </div>

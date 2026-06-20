@@ -1,20 +1,22 @@
+"use client"
+
 import { Button } from "@/components/ui/button"
-import { LogIn, Sun, User } from "lucide-react"
+import { LogIn, UserPlus } from "lucide-react"
 import React from "react"
 
 const NavActions = () => {
   return (
-    <div className="flex items-center justify-end gap-2">
-      <Button variant={`ghost`}>
-        <Sun className="h-8 w-8" />
-      </Button>
-      <Button variant={`default`}>
+    <div className="flex items-center justify-end gap-2.5">
+      <Button
+        variant="ghost"
+        className="text-slate-600 hover:text-slate-900 dark:text-slate-300 dark:hover:text-slate-50"
+      >
         <LogIn className="size-4" />
         Login
       </Button>
-      <Button variant={`outline`}>
-        <User className="size-4" />
-        Signup
+      <Button className="shadow-sm">
+        <UserPlus className="size-4" />
+        Sign up
       </Button>
     </div>
   )

@@ -5,20 +5,25 @@ import NavActions from "@/components/layout/Navbar/NavActions"
 
 const Navbar = () => {
   return (
-    <div className="border-b border-slate-300">
+    <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60 dark:border-slate-800 dark:bg-slate-950/80 dark:supports-backdrop-filter:bg-slate-950/60">
       <Container>
-        <div className="flex items-center justify-between">
+        <div className="flex h-8 items-center justify-between">
           {/* Logo */}
-          <div className="py-2 text-2xl font-semibold">
-            <span className="flex items-center gap-1">
-              <MessageCircle />
-              AI Customer support
+          <div className="flex items-center gap-2 text-xl font-semibold tracking-tight text-slate-900 dark:text-slate-50">
+            <span className="flex items-center gap-2">
+              <span className="flex size-8 items-center justify-center rounded-lg bg-primary text-primary-foreground">
+                <MessageCircle className="size-4.5" />
+              </span>
+              <span className="hidden sm:inline">AI Customer Support</span>
+              <span className="sm:hidden">AI CS</span>
             </span>
           </div>
+
           {/* Navigation Menu */}
-          <div>
+          <div className="hidden md:block">
             <NavMenu />
           </div>
+
           {/* Login/Signup Actions */}
           <div>
             <NavActions />
