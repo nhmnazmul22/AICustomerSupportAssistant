@@ -5,7 +5,7 @@ import DemoChatAssistant from "./DemoChatAssistant"
 
 const Hero = () => {
   return (
-    <div className="relative overflow-hidden bg-white dark:bg-slate-950">
+    <div className="relative overflow-hidden">
       <div
         aria-hidden
         className="pointer-events-none absolute -top-30 left-1/2 h-140 w-200 -translate-x-1/2 rounded-full bg-primary/15 blur-3xl dark:bg-primary/20"

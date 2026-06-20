@@ -18,7 +18,7 @@ export default function RootLayout({
       suppressHydrationWarning
       className={cn("antialiased", DMSans.variable)}
     >
-      <body className="bg-background">
+      <body className="bg-white dark:bg-slate-950">
         <ThemeProvider>
           <Navbar />
           <main>{children}</main>
