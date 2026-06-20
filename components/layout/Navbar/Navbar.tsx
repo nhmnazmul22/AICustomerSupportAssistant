@@ -5,7 +5,7 @@ import NavActions from "@/components/layout/Navbar/NavActions"
 
 const Navbar = () => {
   return (
-    <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60 dark:border-slate-800 dark:bg-slate-950/80 dark:supports-backdrop-filter:bg-slate-950/60">
+    <div className="sticky top-0 z-50 border-b border-slate-200 bg-white/80 backdrop-blur-md supports-backdrop-filter:bg-white/60 dark:border-slate-800 dark:bg-slate-950 dark:supports-backdrop-filter:bg-slate-950/60">
       <Container>
         <div className="flex h-8 items-center justify-between">
           {/* Logo */}
