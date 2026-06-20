@@ -62,9 +62,6 @@ const DemoChatAssistant = () => {
           </div>
         </div>
       </div>
-      <p className="mt-2.5 text-center text-[11px] text-slate-400 dark:text-slate-500">
-        This is a live preview — try the real widget in the corner ↘
-      </p>
     </div>
   )
 }
