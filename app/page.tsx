@@ -1,4 +1,5 @@
 import Section from "@/components/common/Section"
+import Cta from "@/components/pages/Home/Cta/Cta"
 import Feature from "@/components/pages/Home/Feature/Feature"
 import Hero from "@/components/pages/Home/Hero/Hero"
 import Setup from "@/components/pages/Home/Setup/Setup"
@@ -16,6 +17,9 @@ export default function Page() {
       </Section>
       <Section>
         <Setup />
+      </Section>
+      <Section>
+        <Cta />
       </Section>
     </div>
   )

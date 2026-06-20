@@ -1,4 +1,4 @@
-import { FeatureItem, SetupStep } from "@/types"
+import { FeatureItem, FooterLink, SetupStep } from "@/types"
 import {
   BotMessageSquare,
   FileStack,
@@ -47,7 +47,6 @@ export const features: FeatureItem[] = [
   },
 ]
 
-
 export const setupSteps: SetupStep[] = [
   {
     number: "01",
@@ -67,4 +66,10 @@ export const setupSteps: SetupStep[] = [
     description:
       "Copy one script tag into your site. The widget appears bottom-right, ready for real customers.",
   },
+]
+
+export const footerLinks: FooterLink[] = [
+  { label: "Privacy", href: "/privacy" },
+  { label: "Terms", href: "/terms" },
+  { label: "Contact", href: "/contact" },
 ]

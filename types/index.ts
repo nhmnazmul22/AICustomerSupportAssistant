@@ -11,3 +11,8 @@ export type SetupStep = {
   title: string
   description: string
 }
+
+export type FooterLink = {
+  label: string
+  href: string
+}
