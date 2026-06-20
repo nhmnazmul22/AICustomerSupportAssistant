@@ -1,4 +1,4 @@
-import { FeatureItem } from "@/types"
+import { FeatureItem, SetupStep } from "@/types"
 import {
   BotMessageSquare,
   FileStack,
@@ -44,5 +44,27 @@ export const features: FeatureItem[] = [
     title: "Hands off to a human",
     description:
       "When it's unsure, it says so and routes the conversation to your team instead of guessing.",
+  },
+]
+
+
+export const setupSteps: SetupStep[] = [
+  {
+    number: "01",
+    title: "Upload your knowledge base",
+    description:
+      "Drag in your help docs, FAQs, or product manuals from the dashboard. No formatting required.",
+  },
+  {
+    number: "02",
+    title: "Preview and adjust tone",
+    description:
+      "Test it in the built-in playground and tune how formal or casual it sounds before going live.",
+  },
+  {
+    number: "03",
+    title: "Embed on your site",
+    description:
+      "Copy one script tag into your site. The widget appears bottom-right, ready for real customers.",
   },
 ]
