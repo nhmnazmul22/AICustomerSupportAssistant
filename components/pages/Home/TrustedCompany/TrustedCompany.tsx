@@ -5,11 +5,11 @@ const TrustedCompany = () => {
   return (
     <div className="border-y border-border py-2">
       <Container>
-        <div className="">
+        <div className="max-w-2xl mx-auto">
           <span className="block text-center text-xs text-muted-foreground">
             Trusted by support teams at
           </span>
-          <div className="mt-5 flex items-center justify-center gap-15">
+          <div className="mt-5 grid  sm:grid-cols-3 md:grid-cols-5 gap-10 text-center">
             <span className="text-md font-medium text-muted-foreground duration-200 hover:text-slate-800 dark:hover:text-slate-200">
               Northwind
             </span>
