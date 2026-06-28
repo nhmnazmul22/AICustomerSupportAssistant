@@ -16,3 +16,9 @@ export type FooterLink = {
   label: string
   href: string
 }
+
+export type ChatType = {
+  id: string | number
+  sender: "user" | "agent"
+  message: string
+}
