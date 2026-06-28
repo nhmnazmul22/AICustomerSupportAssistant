@@ -21,11 +21,11 @@ const ChatBoxBody = () => {
             }`}
           >
             {chat.sender === "user" ? (
-              <div className="w-[50%] rounded-lg bg-primary p-3">
+              <div className="w-[70%] rounded-lg bg-primary p-3">
                 {chat.message}
               </div>
             ) : (
-              <div className="w-[50%] rounded-lg bg-gray-800 p-3">
+              <div className="w-[70%] rounded-lg bg-gray-800 p-3">
                 {chat.message}
               </div>
             )}
