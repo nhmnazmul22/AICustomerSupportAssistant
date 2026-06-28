@@ -8,7 +8,7 @@ const ChatBoxBody = () => {
   return (
     <div
       className={
-        "hide-scrollbar flex max-h-125 flex-1 flex-col gap-3 overflow-y-auto border-y border-gray-800 bg-gray-900 p-4"
+        "hide-scrollbar flex flex-1 flex-col gap-3 overflow-y-auto border-y border-gray-800 bg-gray-900 p-4"
       }
     >
       {chats &&

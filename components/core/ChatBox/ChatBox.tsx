@@ -11,14 +11,14 @@ const ChatBox = () => {
   return (
     isChatBoxOpen && (
       <div
-        className={`fixed z-50 right-7.5 bottom-25 h-125 max-h-125 w-125 max-w-125 rounded-[20px] bg-gray-800 flex flex-col`}
+        className={`fixed right-7 bottom-22 z-50 flex h-[calc(100dvh-10rem)] max-h-175 w-[calc(100vw-2rem)] max-w-125 flex-col rounded-2xl bg-gray-800`}
       >
         {/*  Chatbox Header */}
         <ChatBoxHeader />
         {/* Chatbox   body */}
-        <ChatBoxBody/>
+        <ChatBoxBody />
         {/*  Chatbox footer */}
-        <ChatBoxFooter/>
+        <ChatBoxFooter />
       </div>
     )
   )
