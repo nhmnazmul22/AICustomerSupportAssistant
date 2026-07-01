@@ -13,7 +13,6 @@ export async function POST(req: NextRequest) {
     }
     const generateMessage = await AIinteraction(body.input)
 
-    console.log("Generate Message: ", generateMessage)
     return NextResponse.json({
       success: true,
       message: "AI Generated Response",
