@@ -2,12 +2,58 @@
 
 namespace Tests\Feature;
 
+use App\Models\User;
 use Illuminate\Foundation\Testing\RefreshDatabase;
-use Tests\TestCase;
 
-class AuthTest extends TestCase
+class AuthTest extends BaseTest
 {
     use RefreshDatabase;
+
+    /**
+     * Test admin can get profile info
+     */
+    public function test_admin_can_get_profile_info()
+    {
+        $this->authUser();
+        $response = $this->getJson(route('auth.me'));
+
+        $response->assertOk()
+            ->assertJsonPath('success', true)
+            ->assertJsonPath('message', 'User Retrieve successful')
+            ->assertJsonStructure([
+                'success',
+                'message',
+                'data' => [
+                    'id',
+                    'name',
+                    'email',
+                    'created_at',
+                    'update_at',
+                ],
+            ]);
+
+    }
+
+    public function test_admin_can_logout()
+    {
+        $user = User::factory()->create();
+
+        $token = $user->createToken('test-token');
+
+        $response = $this
+            ->withToken($token->plainTextToken)
+            ->postJson(route('auth.logout'));
+
+        $response->assertOk()
+            ->assertJsonPath('success', true)
+            ->assertJsonPath('message', 'User logout successfully');
+
+        $this->assertDatabaseMissing('personal_access_tokens', [
+            'id' => $token->accessToken->id,
+        ]);
+
+        $this->assertCount(0, $user->tokens()->get());
+    }
 
     /**
      * Test admin can log in
@@ -35,6 +81,11 @@ class AuthTest extends TestCase
                 ]
             ]);
     }
+
+
+    /*
+     * Test admin can log out
+     */
 
     /**
      * Test admin can register

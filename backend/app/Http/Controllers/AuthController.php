@@ -55,11 +55,19 @@ class AuthController extends Controller
         return $this->sendSuccessResponse('User login successfully', ['token' => $token]);
     }
 
+
+    public function me()
+    {
+        return $this->sendSuccessResponse('User Retrieve successful', new UserResource(auth()->user()));
+    }
+
     /**
      * Store a newly created resource in storage.
      */
     public function logout(Request $request)
     {
-        //
+        $request->user()->currentAccessToken()->delete();
+
+        return $this->sendSuccessResponse('User logout successfully');
     }
 }
