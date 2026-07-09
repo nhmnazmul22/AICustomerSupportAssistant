@@ -6,27 +6,27 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Http\Resources\UserResource;
 use App\Models\User;
+use App\Services\AuthService;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Validation\ValidationException;
 use Symfony\Component\HttpFoundation\Response;
 
 class AuthController extends Controller
 {
+    public function __construct(
+        private readonly AuthService $authService
+    ) {}
 
     /**
      * Create a new user
      */
-    public function register(RegisterRequest $request)
+    public function register(RegisterRequest $request): JsonResponse
     {
-        $payload = $request->validated();
-        $result = User::create([
-            ...$payload,
-            'password' => Hash::make($payload['password'])
-        ]);
+        $user = $this->authService->register($request->validated());
+
         return $this->sendSuccessResponse(
             'User creation successful',
-            new UserResource($result),
+            new UserResource($user),
             Response::HTTP_CREATED
         );
     }
@@ -34,39 +34,27 @@ class AuthController extends Controller
     /**
      * Login the user
      */
-    public function login(LoginRequest $request)
+    public function login(LoginRequest $request): JsonResponse
     {
-        // Validated request
-        $credentials = $request->validated();
-
-        // find the user exist or not
-        $user = User::where('email', $credentials['email'])->first();
-
-        // password checking and if password wrong and no user found then give error
-        if (empty($user) || !Hash::check($credentials['password'], $user->password)) {
-            throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
-            ]);
-        }
-
-        // issue a token and return
-        $token = $user->createToken($request['email'])->plainTextToken;
+        $token = $this->authService->login($request->validated());
 
         return $this->sendSuccessResponse('User login successfully', ['token' => $token]);
     }
 
-
-    public function me()
+    public function me(Request $request): JsonResponse
     {
-        return $this->sendSuccessResponse('User Retrieve successful', new UserResource(auth()->user()));
+        return $this->sendSuccessResponse('User Retrieve successful', new UserResource($request->user()));
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function logout(Request $request)
+    public function logout(Request $request): JsonResponse
     {
-        $request->user()->currentAccessToken()->delete();
+        /** @var User $user */
+        $user = $request->user();
+
+        $this->authService->logout($user);
 
         return $this->sendSuccessResponse('User logout successfully');
     }
