@@ -32,6 +32,7 @@ class StoreKnowledgeTest extends BaseTest
                     'type',
                     'content',
                     'user' => [
+                        'id',
                         'name',
                         'email'
                     ],

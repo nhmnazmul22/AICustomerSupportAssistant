@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\DTOs\AIKnowledgeData;
 use App\Http\Requests\StoreKnowledgeRequest;
+use App\Http\Resources\AIKnowledgeResource;
 use App\Services\StoreKnowledgeService;
 
 class StoreKnowledgeController extends Controller
@@ -11,14 +12,16 @@ class StoreKnowledgeController extends Controller
 
     public function __construct(protected StoreKnowledgeService $storeKnowledgeService)
     {
-
     }
 
     public function store(StoreKnowledgeRequest $request)
     {
+        $result = $this->storeKnowledgeService
+            ->storeKnowledge(AIKnowledgeData::fromArray($request->validated()));
 
-        $result = $this->storeKnowledgeService->storeKnowledge(AIKnowledgeData::fromArray($request->validated()));
-
-        return $this->sendSuccessResponse('Knowledge updated with new data', $result);
+        return $this->sendSuccessResponse(
+            'Knowledge updated with new data',
+            new AIKnowledgeResource($result)
+        );
     }
 }

@@ -1,0 +1,21 @@
+Flow of GENERATE Response from the AI:
+    Step 1: User hit the /generate-message
+    Step 2: Validated the user Input and send to AI Model
+    Step 3: AI query based on user response into db and give response based on Knowledge
+    Step 4: AI found any ans from the exist knowledge then it will give response as Json otherwise give a friendly message.
+
+How to upload the Knowledge based:
+    Step 1: Admin upload text, PDF, doc from the /store-content routes with from data.
+    Step 2: Only raw text, PDF and doc are accepted as knowledge for AI.
+    Step 3: If admin provide PDF or doc then the content
+            parse into a text and store it into the DB and raw text no need parsing it can store directly.
+
+
+
+Schema of AI knowledge:
+id,
+type text, pdf, doc
+content,
+userId,
+created_at,
+updated_at

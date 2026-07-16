@@ -15,9 +15,14 @@ class AIKnowledge extends Model
         'user_id'
     ];
 
+    protected $with = [
+        'user'
+    ];
+
     public function user(): BelongsTo
     {
-        return $this->belongsTo('users', 'user_id', 'id');
+        return $this->belongsTo(User::class, 'user_id', 'id')
+            ->select(['id', 'name', 'email']);
     }
 
 }

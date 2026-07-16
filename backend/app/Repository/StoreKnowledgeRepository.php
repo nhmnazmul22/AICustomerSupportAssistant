@@ -10,8 +10,12 @@ class StoreKnowledgeRepository
     {
     }
 
-    public function createKnowledge(array $attributes): array
+    public function createKnowledge(array $attributes): AIKnowledge
     {
-        return $this->AIKnowledge->create($attributes);
+        $knowledge = $this->AIKnowledge->create($attributes);
+
+        $knowledge->load('user');
+
+        return $knowledge;
     }
 }
