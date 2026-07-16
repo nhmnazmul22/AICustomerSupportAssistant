@@ -13,6 +13,7 @@ return new class extends Migration {
         Schema::create('ai_knowledge', function (Blueprint $table) {
             $table->id();
             $table->string('type')->default('text');
+            $table->string('title')->nullable();
             $table->string('content')->default('');
             $table->foreignId('user_id')->nullable()
                 ->constrained('users', 'id');
