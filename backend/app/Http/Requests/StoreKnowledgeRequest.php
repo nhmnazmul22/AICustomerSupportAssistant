@@ -14,7 +14,7 @@ class StoreKnowledgeRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -26,7 +26,8 @@ class StoreKnowledgeRequest extends FormRequest
     {
         return [
             'type' => ['required', 'string', Rule::in(KnowledgeType::cases())],
-            'textContent' => ['required_without:files', 'string', 'min:120'],
+            'title' => ['sometimes', 'string'],
+            'textContent' => ['required_without:files', 'string'],
             'files' => [
                 'required_without:textContent',
                 'array',

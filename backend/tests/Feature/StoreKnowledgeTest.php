@@ -13,6 +13,7 @@ class StoreKnowledgeTest extends BaseTest
         $this->authUser();
         $payload = [
             'type' => 'text',
+            'title' => 'testing',
             'textContent' => 'This is test content'
         ];
 

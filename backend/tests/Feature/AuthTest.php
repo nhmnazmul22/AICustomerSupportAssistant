@@ -37,8 +37,7 @@ class AuthTest extends BaseTest
     public function test_admin_can_logout()
     {
         $user = User::factory()->create();
-
-        $token = $user->createToken('test-token');
+        $token = $this->authUserToken($user);
 
         $response = $this
             ->withToken($token->plainTextToken)
