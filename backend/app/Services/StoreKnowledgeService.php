@@ -3,9 +3,12 @@
 namespace App\Services;
 
 
-class StoreKnowledgeService
+use App\DTOs\AIKnowledgeData;
+use App\Repository\StoreKnowledgeRepository;
+
+readonly class StoreKnowledgeService
 {
-    public function __construct()
+    public function __construct(private StoreKnowledgeRepository $storeKnowledgeRepository)
     {
     }
 
@@ -14,20 +17,25 @@ class StoreKnowledgeService
      * if attributes have any files like PDF, docs or txt  then send to the processFiles method and
      * send the response of that method to the repository.
      */
-    public function storeKnowledge(array $attributes): array
+    public function storeKnowledge(AIKnowledgeData $attributes): array
     {
-        if (count($attributes['files']) > 0) {
-            $filesResponse = $this->processFiles($attributes['files']);
+        if (isset($attributes->files) && count($attributes->files) > 0) {
+            $filesResponse = $this->processFiles($attributes->files);
         }
 
+        $payload = [
+            'type' => $attributes->type->value,
+            'title' => $attributes->title,
+            'content' => $attributes->textContent,
+            'user_id' => auth()->id()
+        ];
 
-        return [];
+        return $this->storeKnowledgeRepository->createKnowledge($payload);
     }
 
 
     public function processFiles(array $files): array
     {
-
         return [];
     }
 }
