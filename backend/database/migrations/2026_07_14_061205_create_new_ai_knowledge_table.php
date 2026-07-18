@@ -15,6 +15,11 @@ return new class extends Migration {
             $table->string('type')->default('text');
             $table->string('title')->nullable();
             $table->string('content')->default('');
+
+            $table->string('file_path')->nullable();
+            $table->string('file_name')->nullable();
+            $table->string('mime_type')->nullable();
+
             $table->foreignId('user_id')->nullable()
                 ->constrained('users', 'id');
             $table->timestamps();

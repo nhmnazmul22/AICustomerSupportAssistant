@@ -12,6 +12,9 @@ class AIKnowledge extends Model
         'type',
         'title',
         'content',
+        'file_path',
+        'file_name',
+        'mime_type',
         'user_id'
     ];
 

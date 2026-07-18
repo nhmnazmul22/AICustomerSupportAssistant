@@ -37,6 +37,7 @@ readonly class StoreKnowledgeService
 
     public function processFiles(array $files): array
     {
+        
         return [];
     }
 }
