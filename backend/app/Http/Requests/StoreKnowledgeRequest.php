@@ -25,17 +25,17 @@ class StoreKnowledgeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['nullable', 'string', Rule::in(KnowledgeType::cases())],
+            'type' => ['required', 'string', Rule::in(KnowledgeType::cases())],
             'title' => ['sometimes', 'string'],
-            'textContent' => ['required_without:files', 'string'],
+            'textContent' => ['required_with:type,text', 'string'],
             'files' => [
-                'required_without:textContent',
+                'required_with:type,file',
                 'array',
                 'min:1',
             ],
             'files.*' => [
                 'file',
-                'mimes:pdf,doc,docx,txt',
+                'mimes:pdf,docx,txt',
                 'max:10240',
             ],
         ];

@@ -14,12 +14,12 @@ return new class extends Migration {
             $table->id();
             $table->string('type')->default('text');
             $table->string('title')->nullable();
-            $table->string('content')->default('');
+            $table->longText('content')->default('');
 
             $table->string('file_path')->nullable();
             $table->string('file_name')->nullable();
             $table->string('mime_type')->nullable();
-
+            $table->string('status')->default('uploaded');
             $table->foreignId('user_id')->nullable()
                 ->constrained('users', 'id');
             $table->timestamps();

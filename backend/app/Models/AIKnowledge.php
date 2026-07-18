@@ -15,6 +15,7 @@ class AIKnowledge extends Model
         'file_path',
         'file_name',
         'mime_type',
+        'status',
         'user_id'
     ];
 
