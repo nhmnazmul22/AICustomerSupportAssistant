@@ -1,0 +1,6 @@
+Hello Laravel!
+
+This is a knowledge base document.
+
+Framework: Laravel
+Language: PHP
