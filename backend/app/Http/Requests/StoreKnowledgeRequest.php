@@ -25,11 +25,16 @@ class StoreKnowledgeRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'type' => ['required', 'string', Rule::in(KnowledgeType::cases())],
+            'type' => ['required', 'string', Rule::enum(KnowledgeType::class)],
             'title' => ['sometimes', 'string'],
-            'textContent' => ['required_with:type,text', 'string'],
+            'textContent' => [
+                Rule::requiredIf($this->type === KnowledgeType::TEXT->value),
+                'nullable',
+                'string'
+            ],
             'files' => [
-                'required_with:type,file',
+                Rule::requiredIf($this->type === KnowledgeType::FILE->value),
+                'nullable',
                 'array',
                 'min:1',
             ],
