@@ -53,6 +53,7 @@ readonly class StoreKnowledgeService
                 'file_path' => $path,
                 'mime_type' => $file->getMimeType(),
                 'status' => AIKnowledgeStatus::UPLOADED->value,
+                'user_id' => auth()->id()
             ]);
 
             ProcessKnowledgeFileJob::dispatch($uploadedKnowledge);

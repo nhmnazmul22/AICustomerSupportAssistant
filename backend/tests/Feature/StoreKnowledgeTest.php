@@ -61,7 +61,7 @@ class StoreKnowledgeTest extends BaseTest
         );
 
         $payload = [
-            'type' => 'pdf',
+            'type' => 'file',
             'title' => 'testing pdf documents',
             'files' => [$pdfFile]
         ];
